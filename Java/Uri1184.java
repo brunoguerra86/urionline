@@ -1,4 +1,3 @@
-    import java.util.Locale;
     import java.util.Scanner;
 
     /**
@@ -13,21 +12,22 @@
 
     public class Uri1184 {
         public static void main(String[] args) {
-            Locale.setDefault(Locale.US); //Substitui separador de decimal de vírgula por ponto
+            //Locale.setDefault(Locale.US); //Substitui separador de decimal de vírgula por ponto
 
+            //Setup
             Scanner teclado = new Scanner(System.in);
 
-            //S - SOMA ou M - MÉDIA
-            String operacao = teclado.nextLine();
-
             float[][] matriz = new float[12][12];
-            float soma = 0;
+            float soma = 0.0f;
             int qtdItens = 0;
+
+            //S - SOMA ou M - MÉDIA
+            char operacao = teclado.nextLine().charAt(0);
 
             for(int linha = 0; linha < 12; linha++){
                 for(int coluna = 0; coluna < 12; coluna++){
 
-                    matriz[linha][coluna] = Float.parseFloat( teclado.nextLine() );
+                    matriz[linha][coluna] = teclado.nextFloat();
 
                     if( linha > coluna ) {
                         soma += matriz[linha][coluna];
@@ -36,11 +36,15 @@
                 }
             }
 
-            if( operacao.equals("S"))  { //SOMA
-                System.out.printf("%.1f", soma);
+            // Saída
+            if( operacao == 'S')  { //SOMA
+                System.out.printf("%.1f\n", soma);
             }
             else { //MEDIA
-                System.out.printf("%.1f", soma / qtdItens );
+                System.out.printf("%.1f\n", soma / qtdItens );
             }
+
+            // Encerramento
+            teclado.close();
         }
     }
